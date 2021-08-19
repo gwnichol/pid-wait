@@ -65,7 +65,7 @@ pub fn get_pid_for_cmd(search: &str) -> Result<unistd::Pid, Box<dyn Error>> {
         print!("Select a match: ");
         std::io::stdout().flush()?;
         std::io::stdin().read_line(&mut line)?;
-        let choice : usize = line.parse()?;
+        let choice : usize = line.trim().parse()?;
         if choice >= matches.len() {
             Err(Box::new(WaitPidError::new(format!("Invalid choice: {}", choice))))
         } else {
